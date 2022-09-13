@@ -1,0 +1,18 @@
+\begin{table}
+\centering
+\begin{tabular}[t]{lcc}
+\toprule
+  & SELLER & BUYER\\
+\midrule
+Trt × Post & \num{12.769}*** & \num{12.643}***\\
+ & (\num{0.134}) & (\num{0.191})\\
+\midrule
+Num.Obs. & \num{6123} & \num{6159}\\
+RMSE & \num{0.77} & \num{0.57}\\
+Std.Errors & by: estate\_agent\_name & by: estate\_agent\_name\\
+FE: estate_agent_name & X & X\\
+FE: floor_date(registration_start_date, "month") & X & X\\
+\bottomrule
+\multicolumn{3}{l}{\rule{0pt}{1em}+ p $<$ 0.1, * p $<$ 0.05, ** p $<$ 0.01, *** p $<$ 0.001}\\
+\end{tabular}
+\end{table}

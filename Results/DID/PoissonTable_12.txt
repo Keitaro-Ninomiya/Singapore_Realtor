@@ -1,0 +1,21 @@
+\begin{table}
+\centering
+\begin{tabular}[t]{lcccc}
+\toprule
+  & No\_FE & FE & TT & 2W\\
+\midrule
+(Intercept) & \num{-0.086}*** &  &  & \\
+ & (\num{0.017}) &  &  & \\
+Trt & \num{-0.384}** &  &  & \\
+ & (\num{0.142}) &  &  & \\
+Post & \num{-0.213}*** & \num{-0.194}** &  & \\
+ & (\num{0.022}) & (\num{0.059}) &  & \\
+Trt × Post & \num{0.454}* & \num{-0.020} & \num{-0.311} & \num{-0.311}\\
+ & (\num{0.189}) & (\num{1.176}) & (\num{1.121}) & (\num{1.121})\\
+\midrule
+Num.Obs. & \num{10889} & \num{10480} & \num{10415} & \num{10415}\\
+RMSE & \num{2.29} & \num{2.24} & \num{2.24} & \num{2.24}\\
+\bottomrule
+\multicolumn{5}{l}{\rule{0pt}{1em}+ p $<$ 0.1, * p $<$ 0.05, ** p $<$ 0.01, *** p $<$ 0.001}\\
+\end{tabular}
+\end{table}

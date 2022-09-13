@@ -1,0 +1,27 @@
+\begin{table}
+\centering
+\begin{tabular}[t]{lcccc}
+\toprule
+  & No\_FE\_4Mon & TT\_4Mon & FE\_4Mon & 2W\_4Mon\\
+\midrule
+(Intercept) & \num{0.393} &  &  & \\
+ & (\num{0.269}) &  &  & \\
+Trt & \num{0.908}*** &  & \num{0.748}*** & \\
+ & (\num{0.128}) &  & (\num{0.128}) & \\
+Small & \num{-0.903}** & \num{-0.829}** &  & \\
+ & (\num{0.284}) & (\num{0.278}) &  & \\
+tenure & \num{0.009}*** & \num{-0.018}*** & \num{0.007}*** & \num{-0.019}***\\
+ & (\num{0.001}) & (\num{0.003}) & (\num{0.001}) & (\num{0.003})\\
+Trt × Small & \num{3.174}*** & \num{2.779}*** &  & \\
+ & (\num{0.406}) & (\num{0.398}) &  & \\
+\midrule
+Num.Obs. & \num{3788} & \num{3788} & \num{3788} & \num{3788}\\
+R2 & \num{0.047} & \num{0.099} & \num{0.121} & \num{0.161}\\
+R2 Adj. & \num{0.046} & \num{0.096} & \num{0.110} & \num{0.149}\\
+AIC & \num{33682.6} & \num{33487.0} & \num{33461.7} & \num{33299.1}\\
+BIC & \num{33720.1} & \num{33568.1} & \num{33767.5} & \num{33648.5}\\
+RMSE & \num{1.26} & \num{1.22} & \num{1.21} & \num{1.18}\\
+\bottomrule
+\multicolumn{5}{l}{\rule{0pt}{1em}+ p $<$ 0.1, * p $<$ 0.05, ** p $<$ 0.01, *** p $<$ 0.001}\\
+\end{tabular}
+\end{table}

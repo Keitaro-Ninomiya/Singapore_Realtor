@@ -37,7 +37,7 @@ ggplot(data=Plot,
   geom_line()+
   geom_vline(xintercept = ymd("2021-09-01"),color="red")
 ggsave(filename = "Entry.png",path = paste(path_remote,"/Results",sep = ""),width=3,height=2)
-
+#Modify#
 Plot %>%
   ggplot(aes(x=seq(ymd("2021-01-01"),ymd("2021-12-01"),by="month"),
              y=mean))+

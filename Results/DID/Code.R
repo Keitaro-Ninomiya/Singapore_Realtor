@@ -7,9 +7,11 @@ library(fixest)
 library(modelsummary)
 library(stargazer)
 
-dtaSales  = read.csv("C:/Users/Keitaro Ninomiya/Box/Research Notes (keitaro2@illinois.edu)/Singapore_Realtor/Raw_Data/CEA_Salesperson_Information/dtaSales.csv")
-dtaAgents = read.csv("C:/Users/Keitaro Ninomiya/Box/Research Notes (keitaro2@illinois.edu)/Singapore_Realtor/Raw_Data/CEA_Salesperson_Information/dtaAgents.csv")
-dtaAgents_Past = read.csv("C:/Users/Keitaro Ninomiya/Box/Research Notes (keitaro2@illinois.edu)/Singapore_Realtor/Raw_Data/CEA_Salesperson_Information/dtaAgents_Past.csv")
+path_draft="C:/Users/Keitaro Ninomiya/Desktop/Singapore_Realtor_Draft"
+
+dtaSales  = read.csv("C:/Users/Keitaro Ninomiya/Box/Research Notes (keitaro2@illinois.edu)/Singapore_Realtor/Raw_Data/CEA_Salesperson_Information/dtaSales_v1.csv")
+dtaAgents = read.csv("C:/Users/Keitaro Ninomiya/Box/Research Notes (keitaro2@illinois.edu)/Singapore_Realtor/Raw_Data/CEA_Salesperson_Information/dtaAgents_v1.csv")
+dtaAgents_Past = read.csv("C:/Users/Keitaro Ninomiya/Box/Research Notes (keitaro2@illinois.edu)/Singapore_Realtor/Raw_Data/CEA_Salesperson_Information/dtaAgents_Past_v1.csv")
 
 dtaSales= dtaSales %>%
   rename(registration_no=salesperson_reg_num)
@@ -33,40 +35,29 @@ dtaAgents =  dtaAgents  %>%
                        TRUE~0),
          CCR_Total=sum(CCR,na.rm = T),
          CCR_Ratio=CCR_Total/final,
-         tenure=ym("2022-07")-registration_start_date,
          Time_from_register=transaction_date-registration_start_date)
 
 Agencies = Agents %>% group_by(estate_agent_license_no,estate_agent_name) %>%
   count()
 
-source("C:/Users/Keitaro Ninomiya/Box/Research Notes (keitaro2@illinois.edu)/Singapore_Realtor/Singapore_Realtor_Git/Results/DID/Functions.R")
+source("C:/Users/Keitaro Ninomiya/Box/Research Notes (keitaro2@illinois.edu)/Singapore_Realtor/Singapore_Realtor_Git/Results/DID/Regression/Code.R")
+
 Size=0.75
 Length=3
 Group=6
 
-results=Reg2(dtaAgents,Group,Size,Length)
-setwd("C:/Users/Keitaro Ninomiya/Box/Research Notes (keitaro2@illinois.edu)/Singapore_Realtor/Results")
-fileConn<-file("C:/Users/Keitaro Ninomiya/Box/Research Notes (keitaro2@illinois.edu)/Singapore_Realtor/Results/DID/PoissonTable.txt")
+Reg2(dtaAgents,Group,Size,Length)
+results=Reg2(dtaAgents,Group,Size,Length,"latex")
+fileConn<-file(paste(path_draft,"/Results/Sales/Results.txt",sep=""))
 writeLines(results, fileConn)
 close(fileConn)
 
-results=Reg3(dtaAgents,Group,Length)
-setwd("C:/Users/Keitaro Ninomiya/Box/Research Notes (keitaro2@illinois.edu)/Singapore_Realtor/Results")
-fileConn<-file("C:/Users/Keitaro Ninomiya/Box/Research Notes (keitaro2@illinois.edu)/Singapore_Realtor/Results/DID/PoissonTable_Hetro.txt")
+results=Reg3(dtaAgents,Group,Length,"latex")
+fileConn<-file(paste(path_draft,"/Results/Sales/Results_Hetro.txt",sep=""))
 writeLines(results, fileConn)
 close(fileConn)
 
-text=Reg4(dtaAgents,Group,Size,"2W",Length)
-fileConn<-file("C:/Users/Keitaro Ninomiya/Box/Research Notes (keitaro2@illinois.edu)/Singapore_Realtor/Results/DID/PoissonTable_Rep.txt")
+text=Reg4(dtaAgents,Group,Size,"2W",Length,"latex")
+fileConn<-file(paste(path_draft,"/Results/Sales/Results_Rep.txt",sep=""))
 writeLines(text, fileConn)
-close(fileConn)
-
-Size=0.75
-Length=3
-Group=12
-
-results=Reg2(dtaAgents,Group,Size,Length)
-setwd("C:/Users/Keitaro Ninomiya/Box/Research Notes (keitaro2@illinois.edu)/Singapore_Realtor/Results")
-fileConn<-file("C:/Users/Keitaro Ninomiya/Box/Research Notes (keitaro2@illinois.edu)/Singapore_Realtor/Results/DID/PoissonTable_12.txt")
-writeLines(results, fileConn)
 close(fileConn)
